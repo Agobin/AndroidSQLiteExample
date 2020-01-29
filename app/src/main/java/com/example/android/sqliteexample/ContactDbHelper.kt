@@ -44,6 +44,22 @@ class ContactDbHelper(val context: Context) :
         return cursor
     }
 
+    fun updateContact(id: Int, name: String, email: String, database: SQLiteDatabase){
+        val contentValues = ContentValues()
+        contentValues.put(ContactContract.NAME, name)
+        contentValues.put(ContactContract.EMAIL, email)
+
+        val selection = ContactContract.CONTACT_ID +"  = " +  id.toString()
+        database.update(ContactContract.TABLE_NAME, contentValues, selection, null)
+
+    }
+
+    fun deleteContact(id: Int, database: SQLiteDatabase){
+        val selection = ContactContract.CONTACT_ID + " = " + id.toString()
+
+        database.delete(ContactContract.TABLE_NAME, selection, null)
+    }
+
     companion object {
 
         val DATABASE_NAME = "contact_db"

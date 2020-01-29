@@ -38,7 +38,6 @@ class ReadContactsFragment : Fragment() {
         }
 
         view.displayTxt.setText(info)
-
         contactDbHelper.close()
         return view
     }
